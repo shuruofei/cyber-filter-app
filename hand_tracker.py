@@ -1,19 +1,3 @@
-import subprocess
-import sys
-
-# ==========================================
-# 🔪 终极黑客补丁：内存级拦截与暗杀
-# ==========================================
-# 扫描环境中是否存在毒瘤（带界面的 OpenCV）
-installed_packages = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze']).decode('utf-8')
-if 'opencv-contrib-python' in installed_packages:
-    # 强行卸载带屏幕的冲突版本
-    subprocess.check_call([sys.executable, '-m', 'pip', 'uninstall', '-y', 'opencv-contrib-python'])
-    # 顺手把 headless 重新干净地装一遍，抢占 cv2 命名空间
-    subprocess.check_call([sys.executable, '-m', 'pip', 'uninstall', '-y', 'opencv-python-headless'])
-    subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'opencv-python-headless'])
-
-# 下面才是咱们原本正常的代码
 import streamlit as st
 import cv2
 import mediapipe as mp
